@@ -1,0 +1,16 @@
+# Exclude build outputs
+Debug/
+Release/
+x64/
+x86/
+
+# Exclude build logs and state files
+*.tlog
+*.log
+*.lastbuildstate
+
+# Exclude pre-compiled headers
+ipch/
+
+# Exclude the .vs directory
+.vs/
