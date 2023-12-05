@@ -3,7 +3,7 @@
 #include "../Trees/XMLValidator.h"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace XMLValidatorTest
+namespace TreeTest
 {
 	TEST_CLASS(TestXMLValidator)
 	{
@@ -21,6 +21,5 @@ namespace XMLValidatorTest
         TEST_METHOD(TestMethod_ValidateNestedValidXMLFile) {
             Assert::IsTrue(validator.validateFile("nested_valid.xml"), L"A nested valid XML should be valid.");
         }
-
 	};
 }
