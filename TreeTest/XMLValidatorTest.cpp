@@ -69,5 +69,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithCDATA) {
             Assert::IsTrue(validator.validateFile("../../Trees/xml_files/cdata.xml"), L"XML with CDATA section should be valid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithSpecialCharactersInTags) {
+            Assert::IsFalse(validator.validateFile("../../Trees/xml_files/special_chars_in_tags.xml"), L"XML with special characters in tag names should be valid.");
+        }
 	};
 }
