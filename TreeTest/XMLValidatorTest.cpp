@@ -41,5 +41,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithoutRoot) {
             Assert::IsFalse(validator.validateFile("../../Trees/xml_files/no_root.xml"), L"XML without a single root element should be invalid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithMultipleRoots) {
+            Assert::IsFalse(validator.validateFile("../../Trees/xml_files/multiple_roots.xml"), L"XML with multiple root elements should be invalid.");
+        }
 	};
 }
