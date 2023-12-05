@@ -45,5 +45,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithMultipleRoots) {
             Assert::IsFalse(validator.validateFile("../../Trees/xml_files/multiple_roots.xml"), L"XML with multiple root elements should be invalid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithUnclosedTag) {
+            Assert::IsFalse(validator.validateFile("../../Trees/xml_files/unclosed_tag.xml"), L"XML with an unclosed tag should be invalid.");
+        }
 	};
 }
