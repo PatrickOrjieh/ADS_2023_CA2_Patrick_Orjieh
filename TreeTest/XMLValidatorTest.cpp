@@ -65,5 +65,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithComments) {
             Assert::IsTrue(validator.validateFile("../../Trees/xml_files/comments.xml"), L"XML with comments should be valid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithCDATA) {
+            Assert::IsTrue(validator.validateFile("../../Trees/xml_files/cdata.xml"), L"XML with CDATA section should be valid.");
+        }
 	};
 }
