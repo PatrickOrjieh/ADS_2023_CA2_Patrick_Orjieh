@@ -33,5 +33,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithContentFile) {
             Assert::IsTrue(validator.validateFile("../../Trees/xml_files/content_valid.xml"), L"XML with content inside tags should be valid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithMismatchedTagsFile) {
+            Assert::IsFalse(validator.validateFile("../../Trees/xml_files/mismatched_tags.xml"), L"XML with mismatched tags should be invalid.");
+        }
 	};
 }
