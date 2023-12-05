@@ -61,5 +61,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithSelfClosingTag) {
             Assert::IsTrue(validator.validateFile("../../Trees/xml_files/self_closing_tag.xml"), L"XML with self-closing tags should be valid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithComments) {
+            Assert::IsTrue(validator.validateFile("../../Trees/xml_files/comments.xml"), L"XML with comments should be valid.");
+        }
 	};
 }

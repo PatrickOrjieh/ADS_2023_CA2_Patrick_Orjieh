@@ -42,6 +42,14 @@ bool XMLValidator::validate(const std::string& xmlContent) {
 
     while (pos < xmlContent.size()) {
         if (xmlContent[pos] == '<') {
+            // Handling comments
+            if (xmlContent.substr(pos, 4) == "<!--") {
+                pos = xmlContent.find("-->", pos);
+                if (pos == std::string::npos) return false; // Unterminated comment
+                pos += 3;
+                continue;
+            }
+
             size_t end = xmlContent.find('>', pos);
             if (end == std::string::npos) {
                 return false; // No closing '>' found for tag
@@ -63,11 +71,10 @@ bool XMLValidator::validate(const std::string& xmlContent) {
                     }
                 }
                 else {
-                    std::string tagName = getTagName(tag);
-                    if (rootFound || tagName.empty()) {
-                        return false; // Another root found or invalid tag name
+                    if (rootFound) {
+                        return false; // Another root found
                     }
-                    tagsStack.push(tagName);
+                    tagsStack.push(getTagName(tag));
                 }
             }
             pos = end + 1;
