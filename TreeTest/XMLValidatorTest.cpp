@@ -37,5 +37,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithMismatchedTagsFile) {
             Assert::IsFalse(validator.validateFile("../../Trees/xml_files/mismatched_tags.xml"), L"XML with mismatched tags should be invalid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithoutRoot) {
+            Assert::IsFalse(validator.validateFile("../../Trees/xml_files/no_root.xml"), L"XML without a single root element should be invalid.");
+        }
 	};
 }
