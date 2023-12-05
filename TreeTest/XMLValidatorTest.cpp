@@ -53,5 +53,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateXMLWithExtraClosingTag) {
             Assert::IsFalse(validator.validateFile("../../Trees/xml_files/extra_closing_tag.xml"), L"XML with an extra closing tag should be invalid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithOverlappingTags) {
+            Assert::IsFalse(validator.validateFile("../../Trees/xml_files/overlapping_tags.xml"), L"XML with overlapping tags should be invalid.");
+        }
 	};
 }
