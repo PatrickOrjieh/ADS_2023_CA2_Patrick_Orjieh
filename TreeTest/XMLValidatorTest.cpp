@@ -29,5 +29,9 @@ namespace TreeTest
         TEST_METHOD(TestMethod_ValidateNestedValidXMLFile) {
             Assert::IsTrue(validator.validateFile("../../Trees/xml_files/nested_valid.xml"), L"A nested valid XML should be valid.");
         }
+
+        TEST_METHOD(TestMethod_ValidateXMLWithContentFile) {
+            Assert::IsTrue(validator.validateFile("../../Trees/xml_files/content_valid.xml"), L"XML with content inside tags should be valid.");
+        }
 	};
 }

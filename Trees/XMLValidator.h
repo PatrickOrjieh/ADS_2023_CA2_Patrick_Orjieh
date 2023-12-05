@@ -2,6 +2,8 @@
 #include <string>
 #include <stack>
 #include <fstream>
+#include <algorithm>
+
 
 class XMLValidator {
 public:
@@ -32,38 +34,34 @@ bool XMLValidator::validateFile(const std::string& filename) {
 
 bool XMLValidator::validate(const std::string& xmlContent) {
     std::stack<std::string> tagsStack;
-    // to keep track of the tags that are opened but not closed yet
     size_t pos = 0;
     bool rootFound = false;
 
-    // Iterate over the string and find tags
     while (pos < xmlContent.size()) {
-        // If '<' is found, it is a tag
         if (xmlContent[pos] == '<') {
             size_t end = xmlContent.find('>', pos);
-            // If '>' is not found, the XML is invalid
             if (end == std::string::npos) {
                 return false; // No closing '>' found for tag
             }
 
-            // Extract the tag
             std::string tag = xmlContent.substr(pos, end - pos + 1);
             if (isTag(tag)) {
+                // Check for a closing tag
                 if (isClosingTag(tag)) {
                     std::string tagName = getTagName(tag);
+                    // Tag mismatch or missing opening tag
                     if (tagsStack.empty() || tagsStack.top() != tagName) {
-                        // Mismatched or missing opening tag
                         return false;
                     }
                     tagsStack.pop();
+                    // The root element is closed properly
                     if (tagsStack.empty()) {
-                        // The root element is closed properly
                         rootFound = true;
                     }
                 }
                 else {
-                    if (rootFound) {
-                        // Another root found, which is invalid
+                    // Another root found or invalid tag name
+                    if (rootFound || !isValidTagName(getTagName(tag))) {
                         return false;
                     }
                     tagsStack.push(getTagName(tag));
@@ -72,10 +70,11 @@ bool XMLValidator::validate(const std::string& xmlContent) {
             pos = end + 1;
         }
         else {
+            // Increment position if not a tag
             pos++;
         }
     }
-    // If stack is not empty or no root was found, XML is invalid
+    // Validate that all tags were closed and a single root was found
     return tagsStack.empty() && rootFound;
 }
 
@@ -102,5 +101,10 @@ bool XMLValidator::isCommentOrCDATA(const std::string& tag) {
 }
 
 bool XMLValidator::isValidTagName(const std::string& tagName) {
-	return false;
+    if (tagName.empty() || !isalpha(tagName[0])) {
+        return false; // Tag names must start with a letter
+    }
+    return std::all_of(tagName.begin(), tagName.end(), [](char ch) {
+        return isalnum(ch) || ch == '-' || ch == '_' || ch == '.';
+        });
 }
