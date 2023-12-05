@@ -169,11 +169,6 @@
     <ClInclude Include="TreeIterator.h" />
     <ClInclude Include="XMLValidator.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Xml Include="empty.xml" />
-    <Xml Include="nested_valid.xml" />
-    <Xml Include="simple_valid.xml" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -42,9 +42,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Xml Include="empty.xml" />
-    <Xml Include="simple_valid.xml" />
-    <Xml Include="nested_valid.xml" />
-  </ItemGroup>
 </Project>
