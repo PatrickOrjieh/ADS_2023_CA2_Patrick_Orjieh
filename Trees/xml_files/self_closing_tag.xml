@@ -1,0 +1,4 @@
+<root>
+    <child attribute="value" />
+    <anotherChild />
+</root>
