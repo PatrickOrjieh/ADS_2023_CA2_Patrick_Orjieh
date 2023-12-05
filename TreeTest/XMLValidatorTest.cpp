@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../XMLValidator/XMLValidator.h"
+#include "../Trees/XMLValidator.h"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace XMLValidatorTest
