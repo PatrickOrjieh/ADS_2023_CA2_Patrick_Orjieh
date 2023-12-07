@@ -34,5 +34,11 @@ namespace TreeTest
 			dir.setName("New Dir");
 			Assert::AreEqual("New Dir", dir.getName().c_str());
 		}
+
+		TEST_METHOD(TestDirCountEmpty)
+		{
+			Dir dir("Dir");
+			Assert::AreEqual(0, dir.size());
+		}
 	};
 }
