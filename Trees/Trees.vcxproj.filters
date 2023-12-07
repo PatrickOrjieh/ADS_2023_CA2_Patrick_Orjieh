@@ -47,5 +47,8 @@
     <ClInclude Include="Folder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -163,6 +163,7 @@
     <ClCompile Include="Trees.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dir.h" />
     <ClInclude Include="DList.h" />
     <ClInclude Include="DListIterator.h" />
     <ClInclude Include="DListNode.h" />
