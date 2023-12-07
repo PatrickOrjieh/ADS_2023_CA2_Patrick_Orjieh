@@ -134,7 +134,7 @@ void question2()
 	iter.appendChild(7);
 	iter.appendChild(8);
 	iter.root();
-	//displayTree(iter, "->");
+	displayTree(iter, "->");
 	printDFS(iter);
 	cout << endl;
 	printBFS(root);
