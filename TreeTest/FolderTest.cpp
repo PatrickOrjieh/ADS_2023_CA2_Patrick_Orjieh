@@ -75,5 +75,49 @@ namespace TreeTest
 			file.setType("doc");
 			Assert::AreEqual("20", file.getLength().c_str());
 		}
+
+		TEST_METHOD(TestAddFileAndCount)
+		{
+			Dir mainDir("MainDir");
+
+			Assert::AreEqual(0, mainDir.count(), L"Initial count should be zero.");
+
+			File* file = new File("File", "10", "txt");
+			Tree<Folder*>* fileTree = new Tree<Folder*>(file);
+			mainDir.addChild(fileTree);
+
+			Assert::AreEqual(1, mainDir.count(), L"Count after adding file should be one.");
+		}
+
+		TEST_METHOD(TestAddFilesAndSubdirectoriesAndCount)
+		{
+			Dir mainDir("MainDir");
+
+			Assert::AreEqual(0, mainDir.count(), L"Initial count should be zero.");
+
+			File* file1 = new File("File1", "10", "txt");
+			Tree<Folder*>* fileTree1 = new Tree<Folder*>(file1);
+			mainDir.addChild(fileTree1);
+
+			File* file2 = new File("File2", "10", "txt");
+			Tree<Folder*>* fileTree2 = new Tree<Folder*>(file2);
+			mainDir.addChild(fileTree2);
+
+			File* file3 = new File("File3", "10", "txt");
+			Tree<Folder*>* fileTree3 = new Tree<Folder*>(file3);
+			mainDir.addChild(fileTree3);
+
+			Assert::AreEqual(3, mainDir.count(), L"Count after adding three files should be three.");
+
+			Dir* subDir1 = new Dir("SubDir1");
+			Tree<Folder*>* subDirTree1 = new Tree<Folder*>(subDir1);
+			mainDir.addChild(subDirTree1);
+
+			Dir* subDir2 = new Dir("SubDir2");
+			Tree<Folder*>* subDirTree2 = new Tree<Folder*>(subDir2);
+			mainDir.addChild(subDirTree2);
+
+			Assert::AreEqual(5, mainDir.count(), L"Count after adding files and subdirectories should be five.");
+		}
 	};
 }

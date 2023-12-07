@@ -10,7 +10,6 @@ private:
 public:
     Dir(std::string name);
     void addChild(Tree<Folder*>* child);
-    //inherit count from Folder
     int count();
     ~Dir();
 };
@@ -24,15 +23,14 @@ void Dir::addChild(Tree<Folder*>* child) {
     children->append(child);
 }
 
-int Dir::count()
-{
-	int count = 1;
+int Dir::count() {
+    int count = 0;
     DListIterator<Tree<Folder*>*> iter = children->getIterator();
     while (iter.isValid()) {
-		count += iter.item()->count();
-		iter.advance();
-	}
-	return count-1;
+        count += iter.item()->count();
+        iter.advance();
+    }
+    return count;
 }
 
 Dir::~Dir()
