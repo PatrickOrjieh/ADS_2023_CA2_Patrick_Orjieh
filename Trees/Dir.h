@@ -9,7 +9,8 @@ private:
     DList<Tree<Folder*>*>* children;
 public:
     Dir(std::string name);
-    int size();
+    void addChild(Tree<Folder*>* child);
+    int count();
     ~Dir();
 };
 
@@ -18,10 +19,14 @@ Dir::Dir(std::string name) : Folder(name)
 	children = new DList<Tree<Folder*>*>(); 
 }
 
-int Dir::size()
+void Dir::addChild(Tree<Folder*>* child) {
+    children->append(child);
+}
+
+int Dir::count()
 {
-	int size = 0;
-	return size;
+	int count = 0;
+	return count;
 }
 
 Dir::~Dir()
