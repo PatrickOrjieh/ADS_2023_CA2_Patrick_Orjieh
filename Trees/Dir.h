@@ -2,6 +2,8 @@
 #include "Folder.h"
 #include "Tree.h"
 #include "DList.h"
+#include "DListIterator.h"
+#include "TreeIterator.h"
 
 class Dir : public Folder
 {
@@ -11,6 +13,7 @@ public:
     Dir(std::string name);
     void addChild(Tree<Folder*>* child);
     int count();
+    bool removeChild(const std::string& childName);
     ~Dir();
 };
 
@@ -31,6 +34,18 @@ int Dir::count() {
         iter.advance();
     }
     return count;
+}
+
+bool Dir::removeChild(const std::string& childName) {
+    DListIterator<Tree<Folder*>*> iter = children->getIterator();
+    while (iter.isValid()) {
+        if (iter.item()->getData()->getName() == childName) {
+			children->remove(iter);
+			return true;
+		}
+		iter.advance();
+	}
+	return false;
 }
 
 Dir::~Dir()
