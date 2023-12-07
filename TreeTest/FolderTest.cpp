@@ -3,6 +3,7 @@
 #include "../Trees/Folder.h"
 #include "../Trees/Dir.h"
 #include "../Trees/Tree.h"
+#include "../Trees/File.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -54,6 +55,14 @@ namespace TreeTest
 			mainDir.addChild(subDirTree);
 
 			Assert::AreEqual(1, mainDir.count(), L"Count after adding subdirectory should be one.");
+		}
+
+		TEST_METHOD(TestFileConstructor)
+		{
+			File file("File", "10", "txt");
+			Assert::AreEqual("File", file.getName().c_str());
+			Assert::AreEqual("10", file.getLength().c_str());
+			Assert::AreEqual("txt", file.getType().c_str());
 		}
 	};
 }
