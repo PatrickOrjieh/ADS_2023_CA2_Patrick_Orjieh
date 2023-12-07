@@ -119,5 +119,55 @@ namespace TreeTest
 
 			Assert::AreEqual(5, mainDir.count(), L"Count after adding files and subdirectories should be five.");
 		}
+
+		TEST_METHOD(RemoveExistingChild)
+		{
+			Dir dir("TestDir");
+			File* file = new File("TestFile", "100", "txt");
+			Tree<Folder*>* fileTree = new Tree<Folder*>(file);
+			dir.addChild(fileTree);
+			bool result = dir.removeChild("TestFile");
+			Assert::IsTrue(result, L"Child should be removed successfully.");
+			Assert::AreEqual(0, dir.count(), L"Directory should be empty after removal.");
+		}
+
+		TEST_METHOD(RemoveNonExistentChild)
+		{
+			Dir dir("TestDir");
+			bool result = dir.removeChild("NonExistentFile");
+			Assert::IsFalse(result, L"Non-existent child removal should fail.");
+		}
+
+		TEST_METHOD(RemoveChildFromEmptyDir)
+		{
+			Dir dir("TestDir");
+			bool result = dir.removeChild("AnyFile");
+			Assert::IsFalse(result, L"Removal from empty directory should fail.");
+		}
+
+		TEST_METHOD(RemoveChildWithEmptyName)
+		{
+			Dir dir("TestDir");
+			bool result = dir.removeChild("");
+			Assert::IsFalse(result, L"Removal of a child with an empty name should fail.");
+		}
+
+		TEST_METHOD(RemoveMultipleChildren)
+		{
+			Dir dir("TestDir");
+			Dir subDir1("SubDir1");
+			Tree<Folder*>* subDirTree1 = new Tree<Folder*>(&subDir1);
+			dir.addChild(subDirTree1);
+			File * file1 = new File("File1", "100", "txt");
+			Tree<Folder*>* fileTree1 = new Tree<Folder*>(file1);
+			dir.addChild(fileTree1);
+			Assert::AreEqual(2, dir.count(), L"Count should be two after adding two children.");
+			bool result1 = dir.removeChild("SubDir1");
+			Assert::IsTrue(result1, L"Child should be removed successfully.");
+			Assert::AreEqual(1, dir.count(), L"Count should be one after removing one child.");
+			bool result2 = dir.removeChild("File1");
+			Assert::IsTrue(result2, L"Child should be removed successfully.");
+			Assert::AreEqual(0, dir.count(), L"Count should be zero after removing all children.");
+		}
 	};
 }
