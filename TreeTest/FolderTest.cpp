@@ -64,5 +64,16 @@ namespace TreeTest
 			Assert::AreEqual("10", file.getLength().c_str());
 			Assert::AreEqual("txt", file.getType().c_str());
 		}
+
+		TEST_METHOD(TestFileSetMethods)
+		{
+			File file("File", "10", "txt");
+			file.setName("New File");
+			Assert::AreEqual("New File", file.getName().c_str());
+			file.setLength("20");
+			Assert::AreEqual("20", file.getLength().c_str());
+			file.setType("doc");
+			Assert::AreEqual("20", file.getLength().c_str());
+		}
 	};
 }
