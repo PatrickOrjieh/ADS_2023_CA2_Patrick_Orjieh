@@ -8,6 +8,8 @@ private:
 public:
     Folder(std::string name);
     std::string getName();
+    void setName(std::string name);
+    virtual ~Folder() {};
 };
 
 Folder::Folder(std::string name)
@@ -18,4 +20,9 @@ Folder::Folder(std::string name)
 std::string Folder::getName()
 {
     return name;
+}
+
+void Folder::setName(std::string name)
+{
+	this->name = name;
 }
