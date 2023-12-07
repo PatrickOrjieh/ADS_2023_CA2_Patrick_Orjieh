@@ -9,6 +9,7 @@ public:
     Folder(std::string name);
     std::string getName() const;
     void setName(std::string name);
+    int count();
     virtual ~Folder() {};
 };
 
@@ -25,4 +26,9 @@ std::string Folder::getName() const
 void Folder::setName(std::string name)
 {
 	this->name = name;
+}
+
+int Folder::count()
+{
+	return 1;
 }
