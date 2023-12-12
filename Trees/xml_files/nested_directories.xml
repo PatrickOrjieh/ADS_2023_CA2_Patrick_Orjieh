@@ -1,0 +1,22 @@
+<dir>
+    <name>RootDir</name>
+    <dir>
+        <name>SubDir1</name>
+        <file>
+            <name>File1.txt</name>
+            <length>500b</length>
+            <type>text/plain</type>
+        </file>
+    </dir>
+    <dir>
+        <name>SubDir2</name>
+        <dir>
+            <name>InnerDir</name>
+            <file>
+                <name>Image.png</name>
+                <length>2Mb</length>
+                <type>image/png</type>
+            </file>
+        </dir>
+    </dir>
+</dir>

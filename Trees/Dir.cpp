@@ -41,3 +41,7 @@ Dir::~Dir()
     }
     delete children;
 }
+
+DListIterator<Tree<Folder*>*> Dir::getChildrenIterator() {
+    return children->getIterator();
+}

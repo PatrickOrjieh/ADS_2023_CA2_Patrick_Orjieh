@@ -13,6 +13,7 @@ public:
     Dir(std::string name);
     void addChild(Tree<Folder*>* child);
     int count();
+    DListIterator<Tree<Folder*>*> getChildrenIterator();
     bool removeChild(const std::string& childName);
     ~Dir();
 };
