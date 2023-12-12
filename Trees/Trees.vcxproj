@@ -117,7 +117,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -137,7 +137,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -159,8 +159,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Dir.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Folder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Trees.cpp" />
+    <ClCompile Include="XMLParser.cpp" />
+    <ClCompile Include="XMLValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dir.h" />
@@ -171,6 +176,7 @@
     <ClInclude Include="Folder.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeIterator.h" />
+    <ClInclude Include="XMLParser.h" />
     <ClInclude Include="XMLValidator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../Trees/Folder.h"
 #include "../Trees/Dir.h"
-#include "../Trees/Tree.h"
 #include "../Trees/File.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
