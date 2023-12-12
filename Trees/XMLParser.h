@@ -16,7 +16,7 @@ private:
     Tree<Folder*>* root;
     std::stack<Tree<Folder*>*> nodeStack;
     void processDirectory(std::ifstream& file);
-    /*void processFile(std::ifstream& file);*/
+    void processFile(std::ifstream& file);
     std::string extractTagValue(const std::string& line);
 };
 

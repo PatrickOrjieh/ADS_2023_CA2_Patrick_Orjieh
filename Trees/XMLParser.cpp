@@ -20,6 +20,9 @@ Tree<Folder*>* XMLParser::parseXML(const std::string& filename) {
             //when we reach the end of a directory, we pop it off the stack
             nodeStack.pop();
         }
+        else if (tag == "<file>") {
+			processFile(file);
+		}
     }
 
     return root;
@@ -41,6 +44,20 @@ void XMLParser::processDirectory(std::ifstream& file) {
         nodeStack.top()->children->append(newNode);
     }
     nodeStack.push(newNode);
+}
+
+void XMLParser::processFile(std::ifstream& file) {
+    std::string fileName, fileLength, fileType;
+    std::getline(file, fileName);
+    fileName = extractTagValue(fileName);
+    std::getline(file, fileLength);
+    fileLength = extractTagValue(fileLength);
+    std::getline(file, fileType);
+    fileType = extractTagValue(fileType);
+
+    File* fileObj = new File(fileName, fileLength, fileType);
+    Tree<Folder*>* newNode = new Tree<Folder*>(fileObj);
+    nodeStack.top()->children->append(newNode);
 }
 
 std::string XMLParser::extractTagValue(const std::string& line) {

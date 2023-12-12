@@ -1,0 +1,8 @@
+<dir>
+  <name>MainDirectory</name>
+  <file>
+    <name>Document.txt</name>
+    <length>1024b</length>
+    <type>text/plain</type>
+  </file>
+</dir>
