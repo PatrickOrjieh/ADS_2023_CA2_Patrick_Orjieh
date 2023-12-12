@@ -76,5 +76,11 @@ namespace TreeTest
 			Assert::AreEqual(std::string("2Mb"), file2->getLength());
 			Assert::AreEqual(std::string("image/png"), file2->getType());
         }
+
+		TEST_METHOD(TestParseIncorrectXMLFormat) {
+			XMLParser parser;
+			Tree<Folder*>* tree = parser.parseXML("incorrect_format.xml");
+			Assert::IsNull(tree);
+		}
 	};
 }
