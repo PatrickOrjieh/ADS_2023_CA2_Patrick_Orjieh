@@ -24,7 +24,7 @@ public:
 	static void pruneEmptyDirectories(Tree<Folder*>* node);
 
 	//find a given file/folder given a partial or complete filename and generate the path for the given file/folder
-	//static std::string findFolder(TreeIterator<Folder*> iter, const std::string& filename);
+	static std::string findPath(TreeIterator<Folder*> iter, const std::string& name);
 
 	//display the contents of a given folder
 	static void displayFolderContents(TreeIterator<Folder*> iter);

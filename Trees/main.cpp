@@ -82,6 +82,19 @@ int main()
 			TreeUtilities::pruneEmptyDirectories(tree);
 			break;
 
+		case 5: {
+			cout << "Finding a given file/folder given a partial or complete filename.\n";
+			string name = utils::readString("Enter the name of the file/folder to find: ");
+			string path = TreeUtilities::findPath(iter, name);
+			if (path != "") {
+				cout << "Path to '" << name << "': " << path << endl;
+			}
+			else {
+				cout << "File/folder not found." << endl;
+			}
+			break;
+		}
+
 		case 7:
 			cout << "Exiting the program.\n";
 			return 0;

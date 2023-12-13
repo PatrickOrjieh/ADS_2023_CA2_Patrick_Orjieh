@@ -112,6 +112,25 @@ void TreeUtilities::pruneEmptyDirectories(Tree<Folder*>* node) {
     }
 }
 
+std::string TreeUtilities::findPath(TreeIterator<Folder*> iter, const std::string& partialName) {
+    if (iter.item() && iter.item()->getName().find(partialName) != std::string::npos) {
+        return iter.item()->getName();
+    }
+
+    if (iter.childValid()) {
+        iter.childStart();
+        while (iter.childValid()) {
+            std::string path = findPath(TreeIterator<Folder*>(iter.childIter.item()), partialName);
+            if (!path.empty()) {
+                return iter.item()->getName() + "/" + path;
+            }
+            iter.childForth();
+        }
+    }
+    return "";
+}
+
+
 
 void TreeUtilities::displayFolderContents(TreeIterator<Folder*> iter) {
 
