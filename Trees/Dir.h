@@ -8,6 +8,7 @@
 class Dir : public Folder
 {
 private:
+    Tree<Folder*>* treeNode;
     DList<Tree<Folder*>*>* children;
 public:
     Dir(std::string name);

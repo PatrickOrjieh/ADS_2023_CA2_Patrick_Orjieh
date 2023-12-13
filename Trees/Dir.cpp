@@ -4,10 +4,12 @@
 Dir::Dir(std::string name) : Folder(name)
 {
     children = new DList<Tree<Folder*>*>();
+    treeNode = new Tree<Folder*>(this);
 }
 
 void Dir::addChild(Tree<Folder*>* child) {
     children->append(child);
+    child->parent = treeNode;
 }
 
 int Dir::count() {

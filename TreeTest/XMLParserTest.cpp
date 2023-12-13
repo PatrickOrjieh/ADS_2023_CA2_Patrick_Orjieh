@@ -4,7 +4,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace TreeTest
+namespace FileManagerTest
 {
 	TEST_CLASS(TestXMLParser)
 	{

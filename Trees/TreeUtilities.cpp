@@ -26,8 +26,33 @@ void TreeUtilities::displayTree(TreeIterator<Folder*> iter, const std::string& i
     }
 }
 
-int TreeUtilities::countItems(TreeIterator<Folder*> iter) {
-	return 0;
+TreeIterator<Folder*> TreeUtilities::findFolder(TreeIterator<Folder*> iter, const std::string& folderName) {
+    if (iter.item() && iter.item()->getName() == folderName) {
+        return iter;
+    }
+    if (iter.childValid()) {
+        iter.childStart();
+        while (iter.childValid()) {
+            TreeIterator<Folder*> foundIter = findFolder(iter.childIter.item(), folderName);
+            if (foundIter.node) {
+                return foundIter;
+            }
+            iter.childForth();
+        }
+    }
+    return TreeIterator<Folder*>(nullptr);
+}
+
+int TreeUtilities::countItemsInFolder(TreeIterator<Folder*> folderIter) {
+    int count = 0;
+    if (folderIter.childValid()) {
+        folderIter.childStart();
+        while (folderIter.childValid()) {
+            count++;
+            folderIter.childForth();
+        }
+    }
+    return count;
 }
 
 double TreeUtilities::memoryUsed(TreeIterator<Folder*> iter) {
@@ -36,10 +61,6 @@ double TreeUtilities::memoryUsed(TreeIterator<Folder*> iter) {
 
 void TreeUtilities::pruneTree(TreeIterator<Folder*> iter) {
 
-}
-
-std::string TreeUtilities::findFolder(TreeIterator<Folder*> iter, const std::string& filename) {
-	return std::string();
 }
 
 void TreeUtilities::displayFolderContents(TreeIterator<Folder*> iter) {
