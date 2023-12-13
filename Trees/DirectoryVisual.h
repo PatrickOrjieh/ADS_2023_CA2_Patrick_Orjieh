@@ -1,10 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-
+#include "Tree.h"
+#include "Folder.h"
 class DirectoryVisual {
 public:
-    DirectoryVisual(const std::string& name, const sf::Vector2f& position);
+    DirectoryVisual(Tree<Folder*>* tree, const sf::Vector2f& position);
 
     void draw(sf::RenderWindow& window);
 

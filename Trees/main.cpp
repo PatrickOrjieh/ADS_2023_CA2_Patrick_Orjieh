@@ -113,7 +113,7 @@ int main()
 			cout << "Running SFML Graphics.\n";
 
 			sf::RenderWindow window(sf::VideoMode(800, 600), "Directory Browser");
-			DirectoryVisual rootDirectoryVisual("Root", sf::Vector2f(100, 100));
+			DirectoryVisual rootDirectoryVisual(tree, sf::Vector2f(100, 100));
 
 			while (window.isOpen()) {
 				sf::Event event;

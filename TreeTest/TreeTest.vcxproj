@@ -162,7 +162,6 @@
     <ClCompile Include="..\Trees\Dir.cpp" />
     <ClCompile Include="..\Trees\File.cpp" />
     <ClCompile Include="..\Trees\Folder.cpp" />
-    <ClCompile Include="..\Trees\Trees.cpp" />
     <ClCompile Include="..\Trees\TreeUtilities.cpp" />
     <ClCompile Include="..\Trees\XMLParser.cpp" />
     <ClCompile Include="..\Trees\XMLValidator.cpp" />
