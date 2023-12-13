@@ -95,6 +95,19 @@ int main()
 			break;
 		}
 
+		case 6: {
+			cout << "Displaying the contents of a given folder.\n";
+			string folderName = utils::readString("Enter the name of the folder to display contents of: ");
+			TreeIterator<Folder*> folderIter = TreeUtilities::findFolder(iter, folderName);
+			if (folderIter.node) {
+				TreeUtilities::displayFolderContents(folderIter);
+			}
+			else {
+				cout << "Folder not found." << endl;
+			}
+			break;
+		}
+
 		case 7:
 			cout << "Exiting the program.\n";
 			return 0;

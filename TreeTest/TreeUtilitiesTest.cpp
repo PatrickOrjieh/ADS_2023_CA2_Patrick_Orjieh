@@ -45,6 +45,10 @@ namespace FileManagerTest
             int itemCount = TreeUtilities::countItemsInFolder(iter);
 
             Assert::AreEqual(2, itemCount, L"Folder with 2 files should have 2 items.");
+
+            delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
         }
 
         TEST_METHOD(TestCountItemsInFolderWithDirectories)
@@ -70,6 +74,10 @@ namespace FileManagerTest
             int itemCount = TreeUtilities::countItemsInFolder(iter);
 
             Assert::AreEqual(2, itemCount, L"Folder with 2 directories should have 2 items.");
+
+            delete rootNode;
+            delete dirNode1;
+            delete dirNode2;
         }
 
         TEST_METHOD(TestCountItemsInFolderWithFilesAndDirectories)
@@ -104,6 +112,11 @@ namespace FileManagerTest
             int itemCount = TreeUtilities::countItemsInFolder(iter);
 
             Assert::AreEqual(3, itemCount, L"Folder with 2 files and 1 directory should have 3 items.");
+
+            delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
+            delete dirNode1;
         }
 
         TEST_METHOD(TestMemoryUsedBySingleFolder) {
@@ -134,6 +147,9 @@ namespace FileManagerTest
             Assert::AreEqual(600.00, totalMemory, 0.01, L"Memory used by folder with 3 files should be 600 bytes.");
 
             delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
+            delete fileNode3;
         }
 
         TEST_METHOD(TestMemoryUsedByFolderWithFilesAndDirectories) {
@@ -164,6 +180,10 @@ namespace FileManagerTest
             double totalMemory = TreeUtilities::memoryUsed(iter);
 
             Assert::AreEqual(100.00, totalMemory, 0.01, L"Memory used by folder with 2 files should be 100 bytes.");
+
+            delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
 		}
 
         TEST_METHOD(TestPruneEmptyFolders) {
@@ -260,6 +280,11 @@ namespace FileManagerTest
 			std::string path = TreeUtilities::findPath(iter, "File1");
 
 			Assert::AreEqual(std::string("RootDir/Dir1/File1"), path, L"Path to File1 should be RootDir/Dir1/File1.");
+
+            delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
+            delete dirNode1;
 		}
 
         TEST_METHOD(TestFindPathWithPartialName) {
@@ -291,6 +316,11 @@ namespace FileManagerTest
             std::string path = TreeUtilities::findPath(iter, "res");
 
             Assert::AreEqual(std::string("RootDir/Dir1/resume"), path, L"Path to resume should be RootDir/Dir1/resume.");
+
+            delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
+            delete dirNode1;
         }
 
         TEST_METHOD(TestFindPathWithNoMatch) {
@@ -322,6 +352,47 @@ namespace FileManagerTest
 			std::string path = TreeUtilities::findPath(iter, "resumes");
 
 			Assert::AreEqual(std::string(""), path, L"Path to resume should be empty.");
+
+            delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
+            delete dirNode1;
+		}
+
+        //to test displayFolderContents
+        TEST_METHOD(TestDisplayFolderContents) {
+			File *file1 = new File("resume", "100b", "text/plain");
+			File *file2 = new File("File2", "0b", "text/plain");
+
+			Tree<Folder *> *fileNode1 = new Tree<Folder *>(file1);
+			Tree<Folder *> *fileNode2 = new Tree<Folder *>(file2);
+
+			Dir *dir1 = new Dir("Dir1");
+			Tree<Folder *> *dirNode1 = new Tree<Folder *>(dir1);
+
+			dirNode1->children->append(fileNode1);
+			dirNode1->children->append(fileNode2);
+
+			fileNode1->parent = dirNode1;
+			fileNode2->parent = dirNode1;
+
+			Dir *rootDir = new Dir("RootDir");
+
+			Tree<Folder *> *rootNode = new Tree<Folder *>(rootDir);
+
+			rootNode->children->append(dirNode1);
+
+			dirNode1->parent = rootNode;
+
+			TreeIterator<Folder *> iter(rootNode);
+
+            //dont know how to test this ouput
+
+            delete rootNode;
+            delete fileNode1;
+            delete fileNode2;
+            delete dirNode1;
+
 		}
     };
 }

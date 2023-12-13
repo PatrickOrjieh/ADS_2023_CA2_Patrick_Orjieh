@@ -130,8 +130,24 @@ std::string TreeUtilities::findPath(TreeIterator<Folder*> iter, const std::strin
     return "";
 }
 
-
-
 void TreeUtilities::displayFolderContents(TreeIterator<Folder*> iter) {
+    if (!iter.node) {
+        std::cout << "The folder is empty or does not exist." << std::endl;
+        return;
+    }
 
+    if (iter.childValid()) {
+        iter.childStart();
+        while (iter.childValid()) {
+            Folder* currentFolder = iter.childIter.item()->getData();
+            File* file = dynamic_cast<File*>(currentFolder);
+            if (file) {
+                std::cout << "File: " << file->getName() << " Size: " << file->getLength() << file->getType() << std::endl;
+            }
+            else {
+                std::cout << "Directory: " << currentFolder->getName() << std::endl;
+            }
+            iter.childForth();
+        }
+    }
 }
