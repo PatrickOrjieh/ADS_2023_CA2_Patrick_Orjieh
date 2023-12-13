@@ -163,6 +163,7 @@
     <ClCompile Include="..\Trees\File.cpp" />
     <ClCompile Include="..\Trees\Folder.cpp" />
     <ClCompile Include="..\Trees\Trees.cpp" />
+    <ClCompile Include="..\Trees\TreeUtilities.cpp" />
     <ClCompile Include="..\Trees\XMLParser.cpp" />
     <ClCompile Include="..\Trees\XMLValidator.cpp" />
     <ClCompile Include="FolderTest.cpp" />
@@ -174,6 +175,7 @@
     </ClCompile>
     <ClCompile Include="TreeIteratorTest.cpp" />
     <ClCompile Include="TreeTest.cpp" />
+    <ClCompile Include="TreeUtilitiesTest.cpp" />
     <ClCompile Include="XMLParserTest.cpp" />
     <ClCompile Include="XMLValidatorTest.cpp" />
   </ItemGroup>

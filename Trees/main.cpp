@@ -47,7 +47,8 @@ int main()
 		switch (choice) {
 		case 1: 
 			cout << "Displaying the tree:\n";
-			TreeUtilities::displayTree(iter, "");
+			TreeUtilities::displayTree(iter, "->");
+			break;
 
 		case 7:
 			cout << "Exiting the program.\n";
