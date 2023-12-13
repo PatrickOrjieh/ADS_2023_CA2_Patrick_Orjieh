@@ -8,6 +8,7 @@
 #include "utils.h"
 #include "XMLValidator.h"
 #include "TreeUtilities.h"
+#include "DirectoryVisual.h"
 
 using namespace std;
 
@@ -19,18 +20,18 @@ void printMenu() {
 	cout << "4. Prune the tree to remove empty folders" << endl;
 	cout << "5. Find a given file/folder given a partial or complete filename" << endl;
 	cout << "6. Display the contents of a given folder" << endl;
-	cout << "7. Exit" << endl;
+	cout << "7. Run SFML Graphics" << endl;
+	cout << "8. Exit the program" << endl;
 }
 
 int main()
 {
 	XMLParser parser;
 	XMLValidator validator;
-	//C:\DSA Class\Test\xml_file.xml
 	string filename;
 	while (true) {
 		//filename = utils::readString("Enter the name of the XML file: ");
-		filename = "C:\\DSA Class\\Test\\xml_file.xml";
+		filename = "xml_files/xml_file.xml";
 		bool isFileValid = validator.validateFile(filename);
 		if (isFileValid) {
 			break;
@@ -108,7 +109,27 @@ int main()
 			break;
 		}
 
-		case 7:
+		case 7: {
+			cout << "Running SFML Graphics.\n";
+
+			sf::RenderWindow window(sf::VideoMode(800, 600), "Directory Browser");
+			DirectoryVisual rootDirectoryVisual("Root", sf::Vector2f(100, 100));
+
+			while (window.isOpen()) {
+				sf::Event event;
+				while (window.pollEvent(event)) {
+					if (event.type == sf::Event::Closed)
+						window.close();
+				}
+
+				window.clear();
+				rootDirectoryVisual.draw(window);
+				window.display();
+			}
+			break;
+		}
+
+		case 8:
 			cout << "Exiting the program.\n";
 			return 0;
 

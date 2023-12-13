@@ -160,10 +160,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dir.cpp" />
+    <ClCompile Include="DirectoryVisual.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="Folder.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Trees.cpp" />
     <ClCompile Include="TreeUtilities.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="XMLParser.cpp" />
@@ -171,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dir.h" />
+    <ClInclude Include="DirectoryVisual.h" />
     <ClInclude Include="DList.h" />
     <ClInclude Include="DListIterator.h" />
     <ClInclude Include="DListNode.h" />
