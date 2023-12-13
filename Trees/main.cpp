@@ -64,6 +64,19 @@ int main()
 			break;
 		}
 
+		case 3: {
+			string folderName = utils::readString("Enter the name of the folder to determine memory usage: ");
+			TreeIterator<Folder*> folderIter = TreeUtilities::findFolder(iter, folderName);
+			if (folderIter.node) {
+				double memoryUsed = TreeUtilities::memoryUsed(folderIter);
+				cout << "Memory used by '" << folderName << "': " << memoryUsed << endl;
+			}
+			else {
+				cout << "Folder not found." << endl;
+			}
+			break;
+		}
+
 		case 7:
 			cout << "Exiting the program.\n";
 			return 0;
