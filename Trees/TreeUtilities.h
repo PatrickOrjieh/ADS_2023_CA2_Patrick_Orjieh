@@ -21,7 +21,7 @@ public:
 	static double memoryUsed(TreeIterator<Folder*> iter);
 
 	//prune the tree to remove empty folders
-	static void pruneTree(TreeIterator<Folder*> iter);
+	static void pruneEmptyDirectories(Tree<Folder*>* node);
 
 	//find a given file/folder given a partial or complete filename and generate the path for the given file/folder
 	//static std::string findFolder(TreeIterator<Folder*> iter, const std::string& filename);

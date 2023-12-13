@@ -123,6 +123,71 @@ namespace FileManagerTest
             Assert::AreEqual(100.00, totalMemory, 0.01, L"Memory used by folder with 2 files should be 100 bytes.");
 		}
 
+        TEST_METHOD(TestPruneEmptyFolders) {
+			File* file1 = new File("File1", "100b", "text/plain");
+			File* file2 = new File("File2", "0b", "text/plain");
+
+			Tree<Folder*>* fileNode1 = new Tree<Folder*>(file1);
+			Tree<Folder*>* fileNode2 = new Tree<Folder*>(file2);
+
+			Dir* dir1 = new Dir("Dir1");
+			Tree<Folder*>* dirNode1 = new Tree<Folder*>(dir1);
+
+			dirNode1->children->append(fileNode1);
+			dirNode1->children->append(fileNode2);
+
+			fileNode1->parent = dirNode1;
+			fileNode2->parent = dirNode1;
+
+			Dir* rootDir = new Dir("RootDir");
+			Tree<Folder*>* rootNode = new Tree<Folder*>(rootDir);
+
+			rootNode->children->append(dirNode1);
+
+			dirNode1->parent = rootNode;
+
+            // add a dir with no files
+            Dir* dir2 = new Dir("Dir2");
+
+            Tree<Folder*>* dirNode2 = new Tree<Folder*>(dir2);
+
+            rootNode->children->append(dirNode2);
+
+            dirNode2->parent = rootNode;
+
+            TreeIterator<Folder*> iter(rootNode);
+
+            TreeUtilities::pruneEmptyDirectories(rootNode);
+
+            int itemCount = TreeUtilities::countItemsInFolder(iter);
+
+            Assert::AreEqual(1, itemCount, L"Prune empty folders should remove the empty folder.");
+		}
+
+        TEST_METHOD(TestPruneEmptyFoldersWithMultipleEmptyFolders) {
+            Dir* rootDir = new Dir("RootDir");
+            Tree<Folder*>* rootNode = new Tree<Folder*>(rootDir);
+
+            Dir* dir1 = new Dir("Dir1");
+            Tree<Folder*>* dirNode1 = new Tree<Folder*>(dir1);
+
+            Dir* dir2 = new Dir("Dir2");
+            Tree<Folder*>* dirNode2 = new Tree<Folder*>(dir2);
+
+            rootNode->children->append(dirNode1);
+            rootNode->children->append(dirNode2);
+
+            dirNode1->parent = rootNode;
+            dirNode2->parent = rootNode;
+
+            TreeIterator<Folder*> iter(rootNode);
+
+            TreeUtilities::pruneEmptyDirectories(rootNode);
+
+            int itemCount = TreeUtilities::countItemsInFolder(iter);
+
+            Assert::AreEqual(0, itemCount, L"Prune empty folders should remove all the subfolders.");
+        }
 
     };
 }

@@ -21,6 +21,7 @@ public:
 	void insert(DListIterator<T> &iter, T item);
 	DListIterator<T> remove(DListIterator<T> &iter);
 	int size();
+	bool isEmpty();
 	~DList();
 };
 
@@ -212,4 +213,10 @@ DList<T>::~DList()
 	}
 	head = nullptr;
 	tail = nullptr;
+}
+
+template <class T>
+bool DList<T>::isEmpty()
+{
+	return head == nullptr;
 }

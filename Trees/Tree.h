@@ -36,3 +36,8 @@ int Tree<T>::count()
 	}
 	return c;
 }
+
+template <class T>
+DListIterator<Tree<T>*> getChildrenIterator() {
+	return children->getIterator();
+}

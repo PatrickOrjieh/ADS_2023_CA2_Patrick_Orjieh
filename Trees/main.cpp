@@ -77,6 +77,11 @@ int main()
 			break;
 		}
 
+		case 4:
+			cout << "Pruning the tree to remove empty folders.\n";
+			TreeUtilities::pruneEmptyDirectories(tree);
+			break;
+
 		case 7:
 			cout << "Exiting the program.\n";
 			return 0;

@@ -75,7 +75,7 @@ double TreeUtilities::memoryUsed(TreeIterator<Folder*> iter) {
             }
         }
 
-        // Process the file and accumulate memory
+        // Process the file and add up memory
         File* file = dynamic_cast<File*>(currentNode->getData());
         if (file) {
             std::string lengthStr = file->getLength();
@@ -85,61 +85,33 @@ double TreeUtilities::memoryUsed(TreeIterator<Folder*> iter) {
             if (unit == "b") {
                 totalMemory += value;
             }
-            else if (unit == "kb") {
-                totalMemory += value * 1024;
-            }
-            else if (unit == "mb") {
-                totalMemory += value * 1024 * 1024;
-            }
-            // Add more units as necessary
         }
     }
 
     return totalMemory;
 }
 
+void TreeUtilities::pruneEmptyDirectories(Tree<Folder*>* node) {
+    if (!node) return;
 
-//double TreeUtilities::memoryUsed(TreeIterator<Folder*> iter) {
-//   Tree<Folder*>* root = iter.node;
-//
-//   if (!root) {
-//	   return 0.0;
-//   }
-//
-//    std::queue<Tree<Folder*>*> q;
-//    q.push(root);
-//    double totalMemory = 0.0;
-//
-//    while (!q.empty()) {
-//        Tree<Folder*>* currentNode = q.front();
-//        q.pop();
-//
-//        Folder* folder = currentNode->getData();
-//        Dir* dir = dynamic_cast<Dir*>(folder);
-//
-//        if (dir) {
-//            DListIterator<Tree<Folder*>*> childIter = currentNode->children->getIterator();
-//            while (childIter.isValid()) {
-//                q.push(childIter.item());
-//                childIter.advance();
-//            }
-//        }
-//        else {
-//            File* file = dynamic_cast<File*>(folder);
-//            if (file) {
-//                std::string length = file->getLength();
-//                totalMemory += std::stod(length.substr(0, length.size() - 1));
-//            }
-//        }
-//    }
-//
-//    return totalMemory;
-//}
+    DListIterator<Tree<Folder*>*> iter = node->children->getIterator();
 
+    while (iter.isValid()) {
+        Tree<Folder*>* child = iter.item();
 
-void TreeUtilities::pruneTree(TreeIterator<Folder*> iter) {
+        pruneEmptyDirectories(child);
 
+        Dir* dir = dynamic_cast<Dir*>(child->getData());
+        if (dir && child->children->isEmpty()) {
+            delete child;
+            iter = node->children->remove(iter);
+        }
+        else {
+            iter.advance();
+        }
+    }
 }
+
 
 void TreeUtilities::displayFolderContents(TreeIterator<Folder*> iter) {
 
