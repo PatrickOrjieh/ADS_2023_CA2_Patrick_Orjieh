@@ -62,5 +62,18 @@ namespace FileManagerTest
 
             Assert::AreEqual(3, itemCount, L"Folder with 2 files and 1 directory should have 3 items.");
         }
+
+        TEST_METHOD(TestMemoryUsedBySingleFolder) {
+            Dir* rootDir = new Dir("RootDir");
+            rootDir->addChild(new Tree<Folder*>(new File("File1", "100b", "text/plain")));
+            rootDir->addChild(new Tree<Folder*>(new File("File2", "200b", "text/plain")));
+            rootDir->addChild(new Tree<Folder*>(new File("File3", "300b", "text/plain")));
+            Tree<Folder*>* rootNode = new Tree<Folder*>(rootDir);
+            TreeIterator<Folder*> iter(rootNode);
+
+            double totalMemory = TreeUtilities::memoryUsed(iter);
+            Assert::AreEqual(300.0, totalMemory, L"Total memory should be 600 bytes.");
+        }
+
     };
 }
