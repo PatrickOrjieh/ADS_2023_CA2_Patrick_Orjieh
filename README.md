@@ -21,14 +21,15 @@ For graphical display, select the SFML option from the menu. This will open a ne
 
 ## Project Structure
 - `main.cpp`: Entry point of the application.
+- `XMLValidator.h/cpp`: Validates the XML file.
 - `XMLParser.h/cpp`: Parses XML files and constructs the directory tree.
 - `Tree.h/cpp` and `TreeIterator.h/cpp`: Implements the tree data structure and iterator.
 - `Dir.h/cpp` and `File.h/cpp`: Represents directory and file nodes.
 - `TreeUtilities.h/cpp`: Provides utility functions for tree operations.
-- `SFMLDisplay.h/cpp`: Handles SFML-based graphical display of the tree.
+- `DirectoryVisual.h/cpp`: Handles SFML-based graphical display of the tree.
 
-**Author**: Patrick Orjieh 
-**Institution**: Dundalk Institute of Technology
+- **Author**: Patrick Orjieh
+- **Institution**: Dundalk Institute of Technology
 
 
 
